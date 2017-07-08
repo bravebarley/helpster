@@ -16,7 +16,14 @@ const createFeedbackForm = (req, res) => {
       if (!data) {
         res.send('Invalid feedback form submission');
       } else {
-        res.send('Feedback form successfully created');
+        Feedback.findAll({where: {claimedBy: req.body.mentorId}})
+        .then(result => {
+           var averageRate = result.reduce((sum, value) => sum+value.rating)/result.length;
+           User.update({rating: averageRate}, {where: {id: req.body.mentorId}})
+          .then(() => {
+            res.send('Feedback form successfully created');
+          });
+        });
       }
     });
 };
