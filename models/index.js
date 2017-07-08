@@ -11,15 +11,24 @@ const createTicket = (req, res) => {
 };
 
 const createFeedbackForm = (req, res) => {
+  console.log("************* req.body: ", req.body);
   Feedback.create(req.body)
     .then(data => {
       if (!data) {
         res.send('Invalid feedback form submission');
       } else {
-        Feedback.findAll({where: {claimedBy: req.body.mentorId}})
+        Feedback.findAll({where: {claimedBy: req.body.claimedBy}})
         .then(result => {
-           var averageRate = result.reduce((sum, value) => sum+value.rating)/result.length;
-           User.update({rating: averageRate}, {where: {id: req.body.mentorId}})
+            console.log("******* result: ", result[0]);
+            console.log("******* result[0].dataValues: ", result[0].dataValues);
+            console.log("******* result[0].dataValues.rating: ", result[0].dataValues.rating);
+
+           var ratingSum = result.reduce(function(sum, value) {
+            return sum + value.dataValues.rating;
+           }, 0);
+           var averageRate = Number((ratingSum/result.length).toFixed(2));
+           console.log("******* averageRate: ", averageRate);
+           User.update({rating: averageRate}, {where: {id: req.body.claimedBy}})
           .then(() => {
             res.send('Feedback form successfully created');
           });
