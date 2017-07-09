@@ -1,17 +1,17 @@
 module.exports.users = [
   {
     "firstName":"Brave",
-    "lastName":"Ignashchenko",
+    "lastName":"Barley",
     "username":"bravebarley1",
     "role":"student",
     "cohort":"HRSF-77"
   },
   {
-    "firstName": "Minji",
-    "lastName": "Lee",
-    "username": "minjilee8816",
-    "role": "mentor",
-    "cohort": "HRSF-78"
+    "firstName": "Taras",
+    "lastName": "Ignashchenko",
+    "username": "tignashchenko",
+    "role": "admin",
+    "cohort": "HRSF-77"
   },
   {
     "firstName": "Saikal",
