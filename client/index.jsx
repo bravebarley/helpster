@@ -79,7 +79,7 @@ class App extends React.Component {
     this.socket.on('user disconnect', data => this.setState({ onlineUsers: data }));
 
     this.socket.on('leave feedback', data => {
-      this.setState({ 
+      this.setState({
         feedback: data,
         mentorId: data
         });
@@ -102,7 +102,7 @@ class App extends React.Component {
       data: feedbackForm,
       success: (response) => {
         console.log(response)
-      }, 
+      },
       error: () => {
         console.log('Error submitting feedback');
       }
@@ -168,7 +168,7 @@ class App extends React.Component {
         this.socket.emit('refresh');
         this.socket.emit('update adminStats');
         this.socket.emit('get wait time');
-        closedTicket; 
+        closedTicket;
       },
       error: (err) => {
         console.log('failed to update ticket');
@@ -179,6 +179,10 @@ class App extends React.Component {
 
   filterTickets(e) {
     if (e) { e.preventDefault(); }
+    this.setState({
+      showMentors: false,
+      feedbackList: null
+    })
     let day = document.getElementById('time-window').value;
     let category = document.getElementById('select-category').value;
     let status = document.getElementById('ticket-status').value;
@@ -224,13 +228,14 @@ class App extends React.Component {
       success: (data) => {
         this.setState({
           showMentors: true,
-          mentorList: data
+          mentorList: data,
+          //feedback: null
         });
       },
       error: (err) => {
         console.log(err);
       }
-    }); 
+    });
   }
 
   getFeedback(mentorID, firstName, lastName) {
@@ -267,7 +272,7 @@ class App extends React.Component {
     let header = null;
     let main = null;
     let list = null;
-    let feedback = null; 
+    let feedback = null;
 
     if (isAuthenticated) {
       nav = <Nav user={this.state.user} />;
@@ -283,18 +288,20 @@ class App extends React.Component {
     } else if (isAuthenticated && user.role === 'mentor') {
       // reserved for mentor view
 
-    } else if (isAuthenticated && user.role === 'admin' ) {
+    } else if (isAuthenticated && user.role === 'admin' && !this.state.showMentors) {
       main = <AdminDashboard getMentors={this.getMentors.bind(this)} filterTickets={this.filterTickets.bind(this)} onlineUsers={this.state.onlineUsers} adminStats={this.state.statistic} ticketCategoryList={this.state.ticketCategoryList} />;
+      list = <TicketList  user={this.state.user} ticketList={this.state.ticketList} updateTickets={this.updateTickets.bind(this)} hasClaimed={this.state.hasClaimed} />;
     }
 
 
     if (isAuthenticated && user.role === 'admin' && this.state.showMentors ) {
+      main = <AdminDashboard getMentors={this.getMentors.bind(this)} filterTickets={this.filterTickets.bind(this)} onlineUsers={this.state.onlineUsers} adminStats={this.state.statistic} ticketCategoryList={this.state.ticketCategoryList} />;
       list = <MentorList mentorList={this.state.mentorList} getFeedback={this.getFeedback.bind(this)}/>
     }
 
     if ( this.state.feedback !== null ) {
       feedback = <FeedbackModal submitFeedbackForm = {this.submitFeedbackForm.bind(this)}/>
-    } 
+    }
 
     if( isAuthenticated && user.role === 'admin' && this.state.feedbackList !== null) {
       list = <FeedbackList feedbackList={this.state.feedbackList} mentorFirstName={this.state.mentorFirstName} mentorLastName={this.state.mentorLastName} />
