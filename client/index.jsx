@@ -179,12 +179,6 @@ class App extends React.Component {
 
   filterTickets(e) {
     if (e) { e.preventDefault(); }
-    // console.log('eeeeeeeeeee', e.target)
-    // console.log('??????????????????????')
-    // this.setState({
-    //   showMentors: false
-    // });
-
     let day = document.getElementById('time-window').value;
     let category = document.getElementById('select-category').value;
     let status = document.getElementById('ticket-status').value;
@@ -247,6 +241,7 @@ class App extends React.Component {
       mentorFirstName: firstName,
       mentorLastName: lastName
     })
+
     $.ajax({
       url: '/api/feedbacks',
       method: 'POST',
@@ -299,11 +294,11 @@ class App extends React.Component {
 
     if ( this.state.feedback !== null ) {
       feedback = <FeedbackModal submitFeedbackForm = {this.submitFeedbackForm.bind(this)}/>
-    }
+    } 
 
     if( isAuthenticated && user.role === 'admin' && this.state.feedbackList !== null) {
       list = <FeedbackList feedbackList={this.state.feedbackList} mentorFirstName={this.state.mentorFirstName} mentorLastName={this.state.mentorLastName} />
-    }
+  }
 
     return (
       <div>
