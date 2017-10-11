@@ -1,4 +1,4 @@
-# Help Reactor
+# Helpster
 
 Mentorship platform for JavaScript developers to connect with mentors and mentees to give back to the community.
 
@@ -7,8 +7,11 @@ Mentorship platform for JavaScript developers to connect with mentors and mentee
   - [David Gould](https://github.com/davidgould112)
   - [David Vassett](https://github.com/DavidVassett)
   - [Eric Mai](https://github.com/enmai1988)
-  - [Tyler Pate](https://github.com/TylerPate)
   - [Jacob Penney](https://github.com/OneCent01)
+  - [Tyler Pate](https://github.com/TylerPate)
+  - [Minji Lee]
+  - [Taras Ignashchenko]
+  - [Saikal Kalmanbetova]
 
 ## Table of Contents
 
