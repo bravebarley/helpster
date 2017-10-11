@@ -9,9 +9,9 @@ Mentorship platform for JavaScript developers to connect with mentors and mentee
   - [Eric Mai](https://github.com/enmai1988)
   - [Jacob Penney](https://github.com/OneCent01)
   - [Tyler Pate](https://github.com/TylerPate)
-  - [Minji Lee]
-  - [Taras Ignashchenko]
-  - [Saikal Kalmanbetova]
+  - Minji Lee
+  - Taras Ignashchenko
+  - Saikal Kalmanbetova
 
 ## Table of Contents
 
