@@ -1,12 +1,13 @@
 # Help Reactor
 
-A help desk application used by Hack Reactor students.
+Mentorship platform for JavaScript developers to connect with mentors and mentees to give back to the community.
 
 ## Team
 
   - [David Gould](https://github.com/davidgould112)
   - [David Vassett](https://github.com/DavidVassett)
   - [Eric Mai](https://github.com/enmai1988)
+  - [Tyler Pate](https://github.com/TylerPate)
   - [Jacob Penney](https://github.com/OneCent01)
 
 ## Table of Contents
